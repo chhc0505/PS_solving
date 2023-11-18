@@ -1,0 +1,67 @@
+## Problem
+<https://www.acmicpc.net/problem/2180/>
+
+**Greedy Algorithm - exchange_argument**
+exchange_argument = Greedy 증명 방법 중 하나로 최적해를 세우고 원소를 swap 하면서 처음 가정한 해의 성능이 최적이라는 것을 증명하는 방법
+
+정렬 시 수식을 세우고 정렬하는 방법도 있다 !
+
+## Comment
++ 화제 진압순서가 무작위라고 가정하고 전체 화재 중 근접한 두 화제를 Ai와 Ai+1라고 하자.
+
++ 그러면 다음과 같은 식이 만족한다. **전체 화제 진압시간 = ( Ai와 Ai+1 이전의 화제 진압시간 ) + ( Ai와 Ai+1 화제 진압시간 ) + (Ai와 Ai+1 화제 이후의 진압시간 )**
+
++ 최적해를 찾으려면 어떻게 해야할까 ?? **Ai와 Ai+1의 순서를 어떤 순서로 바꾸던 이전 화제 진압시간에는 영향이 없고, Ai와 Ai+1의 화제 진압시간을 단축시킨다면 그 이후의 화제 진압시간도 단축되거나 같다는 것이 보장된다.**
+
++ 모든 순서가 Ai < Ai+1 (0<=i.. 일 때)를 만족하면 최적해를 보장한다. 이 상황에서 어떤 방식으로 두 원소를 교환하든 전체 진압시간이 줄어들기 때문이다.
+
++ 따라서 Ai와 Ai+1의 화제 진압시간을 단축시켜야하는데 이는 Ai를 먼저 진압했을 때와 Ai+1을 먼저 진압했을 때의 시간을 수식으로 직접 비교해서 파악할 수 있다.
+
++ 처음 이 문제를 접했을 때는 시간 t는 변하는 변수인데 어떤식으로 정렬해야하지를 고민을 많이했다. 하지만 직접 수식을 세워보면 t항은 지워지고 a와 b의 대소비교식만 남아서 상관이없다.
+
+i전까지의 화제 진압시간 ti
+i+1전까지의 화제 진압시간 ti+1 = ati+b / cti+d
+Ai와 Ai+1 총 진압시간 = ati+b+c(ati+b+ti)+d / cti+d+a(cti+d+ti)+b
+항 지우기 ->  bc / ad
+예외처리 : a또는 c가 0일 때, b와 d 모두 0일 때
+
+## Code
+
+```c++
+#include<bits/stdc++.h>
+#define x first
+#define y second
+#define MOD 40000
+using namespace std;
+
+int n;
+vector<pair<int, int> > fire_seq;
+
+bool myCmp (pair<int,int> & a, pair<int,int> & b) {
+    if (a.x==0) return false;
+    if (b.x==0) return true;
+    if (a.y==0 && b.y==0) return a.x < b.x;
+    return a.y*b.x < a.x*b.y;
+}
+int main () {
+    
+    ios::sync_with_stdio(0); cin.tie(0);
+    cin >> n;
+    for (int i=0; i<n; i++) {
+        int a,b; cin >> a >> b;
+        fire_seq.push_back({a,b});
+    }
+    
+    sort(fire_seq.begin(),fire_seq.end(),myCmp);
+    
+    long long all_time(0);
+    for (int i=0; i<n; i++) {
+        all_time = all_time + ((fire_seq[i].x*all_time+fire_seq[i].y)%MOD);
+        all_time = all_time % MOD;
+    }
+    
+    cout << all_time << '\n';
+    
+    return 0;
+}
+```
