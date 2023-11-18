@@ -1,3 +1,16 @@
+## Problem
+<https://www.acmicpc.net/problem/9252>
+DP + String
+    
+## Coment
+* LCS의 길이를 계산하는 DP 문제.
+    DP의 index에 string의 index를 매치하고 DP를 쌓아야한다.
+    __dp[i][j] : 문자열 s1[0,i+1], s2[0,j+1] 에서의 LCS 최대 길이__
+    역 추적을 위해 dp 이전의 정보를 node에 저장
+
+## Code
+
+```c++
 #include<bits/stdc++.h>
 
 using namespace std;
@@ -49,3 +62,4 @@ int main () {
     
     return 0;
 }
+```
