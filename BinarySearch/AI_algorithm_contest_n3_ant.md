@@ -1,5 +1,6 @@
 ## Problem
 숭실대학교 AI융합학부 Code Challenge 3번 문제
+
 Parametric Search + Greedy
 
 ## Coment
