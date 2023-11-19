@@ -1,7 +1,9 @@
 ## Problem
 <https://www.acmicpc.net/problem/7173>
 
-implement + math
+sccc 내전3회 - A
+
+__implement + math__
 
 
 ## Comment
