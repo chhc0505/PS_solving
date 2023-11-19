@@ -1,9 +1,9 @@
 ## Problem
 <https://www.acmicpc.net/problem/30168>
 
-sccc 내전3회-D
+sccc 내전3회-E
 
-math
+__math__
 
 ## Comment
 * 배열의 i,j를 1) 무조건 하얀색인 경우, 2) 무조건 검은색인 경우, 3) 하얀색 또는 검은색 모두 상관없는 경우를 나누어서 생각해야한다.
