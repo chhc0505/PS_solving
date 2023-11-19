@@ -3,7 +3,7 @@
 
 sccc 내전3회 - B
 
-Ad hoc + math
+__Ad hoc + math__
 
 
 ## Comment
