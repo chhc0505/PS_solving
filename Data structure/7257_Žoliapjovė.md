@@ -19,30 +19,36 @@ sccc 내전3회 - D
 
 using namespace std;
 
-string s;
-long long arr[26]; // a~z 0~25
-long long ans(0);
-bool flag = false;
+int n,m;
+long long sum_g(0),sum_k(0);
+deque<int> A;
+deque<int> B;
 int main () {
     
     ios::sync_with_stdio(0); cin.tie(0);
-    cin >> s;
-    for (int i=0; i<s.size(); i++)
-        arr[s[i]-'a']+=1;
-    
-    for (int i=0; i<26; i++) {
-        for (int j=i+1; j<26; j++) {
-            ans += (arr[i]*arr[j]);
-        }
+    cin >> n;
+    for (int i=0; i<n; i++) {
+        int num; cin >> num;
+        sum_g += num;
+        A.push_back(num);
     }
-    for (int i=0; i<26; i++) {
-        if (arr[i]>=2) {
-            flag = true;
-            break;
-        }
+    cin >> m;
+    for (int i=0; i<m; i++) {
+        int num; cin >> num;
+        B.push_back(num);
     }
-    if (flag) cout << ans+1 << '\n';
-    else cout << ans << '\n';
+    //cout << sum_g << '\n';
+    sort(A.begin(),A.end());
+    for (int day=0; day<m; day++) {
+        sum_g += A.size();
+        sum_k += B[day];
+        while (!A.empty() && (A[0]+day+1<=sum_k)) {
+            sum_g -= (A[0]+day+1-sum_k+B[day]);
+            A.pop_front();
+        }
+        sum_g -= B[day]*A.size();
+        cout << sum_g << '\n';
+    }
     
     return 0;
 }
