@@ -1,7 +1,7 @@
 ## Problem
 <https://www.acmicpc.net/problem/7257>
 
-Data structure - Hash
+__Data structure - Hash__
 
 sccc 내전3회 - D
 
