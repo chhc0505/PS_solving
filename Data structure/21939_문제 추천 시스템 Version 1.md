@@ -1,10 +1,11 @@
 ## Problem
 <https://www.acmicpc.net/problem/21939>
 
-__Data structrue - set, unordered_map
+__Data structrue - set, unordered_map__
 
 ## Comment
 * set을 사용하면 쉽게 풀 수 있지만 erase 때문에 잠깐 애먹었던 문제.
+  
   erase에는 문제의 번호만 주어지기 때문에 문제의 번호 - 난이도로 이어지는 hash table을 사용해야 해결할 수 있다.
 
 ## Code
