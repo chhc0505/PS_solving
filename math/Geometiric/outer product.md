@@ -9,6 +9,9 @@
 
 ![image](https://github.com/user-attachments/assets/a84a9c11-9f00-4a38-bda4-033138e2b707)
 
+![image](https://github.com/user-attachments/assets/43e5572b-b5a3-4188-8f31-1b4fece9ef1d)
+
+또한 벡터의 방향은 오른손 법칙을 사용해서 구할 수 있다.
 
 2차원에서의 외적은 정의되어있지 않지만, 3차원에서 z가 0이라고 생각하고, 문제를 해결한다.
 
