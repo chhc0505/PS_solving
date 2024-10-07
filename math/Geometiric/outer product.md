@@ -19,3 +19,34 @@
 
 https://www.acmicpc.net/problem/2166
 
+
+## CCW 알고리즘
+CCW 알고리즘은 평면 상의 서로 다른 세 점이 주어졌을 때 (세 점은 한 평면을 의미, 무조건 성립)
+
+벡터의 외적을 이용해서 세 점 사이의 관계를 파악하는 알고리즘이다. (시계, 반시계, 평행)
+
+외적의 값이 양수이면 시계반대방향, 음수이면 시계방향, 0이면 평행의 관계이다. --> 오른손 법칙 생각!
+
+
+CCW 알고리즘을 이용해서 두 선분의 교차여부를 판단할 수 있다.
+
+![image](https://github.com/user-attachments/assets/5cb7f466-df45-48fa-9d23-eb33c8a8cbb0)
+
+일반적으로 선분이 교차하는 경우 벡터 AB 와 벡터 AD를 외적한 값과 벡터 AB와 벡터 AC를 외적한 값을 곱한 결과가 음수이다. (한 쪽은 시계, 한쪽은 반시계)
+
+![image](https://github.com/user-attachments/assets/2fcf99dc-e008-4870-bc62-eaa710d90cf8)
+
+선분이 교차하지 않는 경우 외적값과 외적값을 곱한 결과가 양수이다.
+
+![image](https://github.com/user-attachments/assets/2420e3a1-5507-4662-a8d9-6db111d547cb)
+
+하지만 위와 같은 경우에, 선분이 교차하지 않음에도 외적과 외적을 곱한 값이 음수가 나올 수 있다. => 다른 선분을 기준으로하면 양수
+
+따라서 각각의 선분을 기준으로 벡터를 구한 뒤, 외적과 외적을 곱해주어야한다.
+
+![image](https://github.com/user-attachments/assets/08c9b0f4-6786-4e1f-84b6-7f4f13bb27ea)
+
+위와 같으 경우는 외적을 구해서 곱하면 0이 나온다. 이 때 A<D && B>C 이면 교차, 아니면 교차가 아니다. (AB 와 CD는 오름차순이라고 가정한다.)
+
+
+
