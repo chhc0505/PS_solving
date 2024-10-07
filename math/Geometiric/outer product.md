@@ -49,4 +49,52 @@ CCW 알고리즘을 이용해서 두 선분의 교차여부를 판단할 수 있
 위와 같으 경우는 외적을 구해서 곱하면 0이 나온다. 이 때 A<D && B>C 이면 교차, 아니면 교차가 아니다. (AB 와 CD는 오름차순이라고 가정한다.)
 
 
+```c++
+#include<bits/stdc++.h>
+#define X first
+#define Y second
 
+using namespace std;
+
+typedef long long ll;
+
+int CCW (pair<ll,ll> v1, pair<ll,ll> v2) {
+    ll s = v1.X*v2.Y- v2.X*v1.Y;
+    if (s>0) return 1;
+    if (s==0) return 0;
+    if (s<0) return -1;
+}
+
+int intersect (pair<ll,ll> A, pair<ll,ll> B, pair<ll,ll> C, pair<ll,ll> D) {
+    pair<ll,ll> AB = {B.X-A.X, B.Y-A.Y};
+    pair<ll,ll> CD = {D.X-C.X, D.Y-C.Y};
+
+    int ABC = CCW(AB, {C.X-A.X, C.Y-A.Y});
+    int ABD = CCW(AB, {D.X-A.X, D.Y-A.Y});
+    int CDA = CCW(CD, {A.X-C.X, A.Y-C.Y});
+    int CDB = CCW(CD, {B.X-C.X, B.Y-C.Y});
+
+    if (ABC*ABD==0 && CDA*CDB==0) {
+        if (A>B) swap(A,B);
+        if (C>D) swap(C,D);
+        return ((A<=D && B>=C));
+    }
+
+    return (ABC*ABD<=0 && CDA*CDB<=0);
+}
+
+int main () {
+
+    ios::sync_with_stdio(0); cin.tie(0);
+    pair<ll,ll> A,B,C,D;
+    cin >> A.X >> A.Y >> B.X >> B.Y;
+    cin >> C.X >> C.Y >> D.X >> D.Y;
+    
+    int ans = intersect(A,B,C,D);
+    cout << ans << '\n';
+
+
+
+    return 0;
+}
+```
