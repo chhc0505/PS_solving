@@ -41,7 +41,7 @@ N이 2의 제곱꼴이 아닌 경우에 세그먼트 트리의 높이 H = [logN]
 // tree: 세그먼트 트리
 // node: 노드 번호
 // node에 저장되어 있는 합의 범위가 start - end
-void init(vector<long long> &a, vector<long long> &tree, int node, int start, int end) {
+void init (int node, int start, int end) {
     if (start == end) {
         tree[node] = a[start];
     } else {
@@ -52,9 +52,11 @@ void init(vector<long long> &a, vector<long long> &tree, int node, int start, in
 }
 ```
 - node의 왼쪽 자식은 2*node, 오른쪽 자식은 2*node+1!
+  
+- segment tree에서 node를 root로 하고 [start, end] 범위를 초기화하는 함수
 
 ```c++
-long long query(vector<long long> &tree, int node, int start, int end, int left, int right) {
+long long query (int node, int start, int end, int left, int right) {
     if (left > end || right < start) {
         return 0;
     }
@@ -66,6 +68,8 @@ long long query(vector<long long> &tree, int node, int start, int end, int left,
     return lsum + rsum;
 }
 ```
+- 현재 [start,end]의 범위값을 가진 node를 방문했고, [left,right]에 해당하는 부분을 return하는 함수
+  
 범위 [start,end]에서 [left,right] 값을 구한다고 생각하자.
 
 [start,end]라는 범위를 [start,(start+end)/2], [(start+end)/2+1, end] 로 쪼개고 [left,right]와 쪼갠 범위를 확인한다.
@@ -79,7 +83,7 @@ long long query(vector<long long> &tree, int node, int start, int end, int left,
 따라서 시간복잡도가 ${O(logn)}$ 인게 자명하다.
 
 ```c++
-void update(vector<long long> &a, vector<long long> &tree, int node, int start, int end, int index, long long val) {
+void update (int node, int start, int end, int index, long long val) {
     if (index < start || index > end) {
         return;
     }
@@ -92,8 +96,9 @@ void update(vector<long long> &a, vector<long long> &tree, int node, int start, 
     update(a, tree,node*2+1, (start+end)/2+1, end, index, val);
     tree[node] = tree[node*2] + tree[node*2+1];
 }
-
 ```
+- 현재 [start,end]의 범위값을 가진 node를 방문했고 a[index]가 포함된 tree의 모든 부분을 update하는 함수
+  
 - update 함수 또한 log의 시간복잡도이다. 
 
 ```c++
