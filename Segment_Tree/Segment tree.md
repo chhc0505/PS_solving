@@ -76,7 +76,7 @@ long long query(vector<long long> &tree, int node, int start, int end, int left,
 
 4개의 노드를 방문했을 때 가장 왼쪽과 오른쪽에 있는 노드만 재귀호출을 함으로 다음 레벨에서 4개 이하의 노드를 방문한다.
 
-따라서 시간복잡도가 $(O(logn)}$ 인게 자명하다.
+따라서 시간복잡도가 ${O(logn)}$ 인게 자명하다.
 
 ```c++
 void update(vector<long long> &a, vector<long long> &tree, int node, int start, int end, int index, long long val) {
@@ -95,4 +95,10 @@ void update(vector<long long> &a, vector<long long> &tree, int node, int start, 
 
 ```
 - update 함수 또한 log의 시간복잡도이다. 
+
+```c++
+int h = (int)ceil(log2(n));
+int tree_size = (1 << (h+1));
+```
+트리의 높이 h와 tree의 size이다. 보통 tree의 size는 4*배열의 크기로 지정하는 경우도 많다.
 
