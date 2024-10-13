@@ -16,6 +16,8 @@
    
 4. 만약 ret (현재 정점에서 갈 수 있는 가장 작은 vertex_number) 가 discovered[node] 라면 현재 정점이 나올 때까지 stack에서 pop하며 SCC 생성
 
+시간복잡도 : ${O(V+E)}$
+
 ## 구현
 ```c++
 vector<int> adj[10005];
