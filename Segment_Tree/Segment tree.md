@@ -107,3 +107,4 @@ int tree_size = (1 << (h+1));
 ```
 트리의 높이 h와 tree의 size이다. 보통 tree의 size는 4*배열의 크기로 지정하는 경우도 많다.
 
+출처 : https://book.acmicpc.net/ds/segment-tree
