@@ -24,5 +24,5 @@ ${\textsf{\color{gold}2293. 동전 1 (G4)}}$
 
 - coin[0], coin[1], ... coin[n-1] 차례로 채우기.
 
-
+${\textsf{\color{lightblue}9461. 파도반 수열 (S3)}}$
   
