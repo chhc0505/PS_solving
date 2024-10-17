@@ -45,8 +45,8 @@ void init (int node, int start, int end) {
     if (start == end) {
         tree[node] = a[start];
     } else {
-        init(a, tree, node*2, start, (start+end)/2);
-        init(a, tree, node*2+1, (start+end)/2+1, end);
+        init(node*2, start, (start+end)/2);
+        init(node*2+1, (start+end)/2+1, end);
         tree[node] = tree[node*2] + tree[node*2+1];
     }
 }
@@ -63,8 +63,8 @@ long long query (int node, int start, int end, int left, int right) {
     if (left <= start && end <= right) {
         return tree[node];
     }
-    long long lsum = query(tree, node*2, start, (start+end)/2, left, right);
-    long long rsum = query(tree, node*2+1, (start+end)/2+1, end, left, right);
+    long long lsum = query(node*2, start, (start+end)/2, left, right);
+    long long rsum = query(node*2+1, (start+end)/2+1, end, left, right);
     return lsum + rsum;
 }
 ```
@@ -92,8 +92,8 @@ void update (int node, int start, int end, int index, long long val) {
         tree[node] = val;
         return;
     }
-    update(a, tree,node*2, start, (start+end)/2, index, val);
-    update(a, tree,node*2+1, (start+end)/2+1, end, index, val);
+    update(node*2, start, (start+end)/2, index, val);
+    update(node*2+1, (start+end)/2+1, end, index, val);
     tree[node] = tree[node*2] + tree[node*2+1];
 }
 ```
