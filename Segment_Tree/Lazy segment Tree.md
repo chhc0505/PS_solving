@@ -34,7 +34,7 @@ void update_range(int node, int start, int end, int left, int right, long long d
 
 Lazy Segment Tree가 구현 가능하려면 노드에 대한 update에 대해서 리프노드가 아닌 상위 노드에서 lazy[node] 값이나 update 값의 결과를 리프노드를 방문하지 않고 구할 수 있어야한다 --> 핵심!!
 
-리프노드를 하나하나 방문하지 않고 상위노드에서 미리 구현하고 리프노드의 lazy 배열에 추가해놓는다. 이 때문에 update_range를 ${O(nlogn)}$dl dksls $(O(logn)}$에 구현이 가능하다. 
+리프노드를 하나하나 방문하지 않고 상위노드에서 미리 구현하고 리프노드의 lazy 배열에 추가해놓는다. 이 때문에 update_range를 ${O(nlogn)}$이 아닌 ${O(logn)}$에 구현이 가능하다. 
 
 ```c++
 void init(int node, int start, int end) {
