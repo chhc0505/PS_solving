@@ -27,3 +27,8 @@ ${\textsf{\color{gold}2293. 동전 1 (G4)}}$
 ${\textsf{\color{lightblue}9461. 파도반 수열 (S3)}}$
   
 - ${dp[i]\ =\ dp[i-1]+dp[i-5]}$
+
+
+${\textsf{\color{gold}1. 계단 오르기 (G5)}}$
+
+-  ${dp[i] += \sum_{j=0,\ i-coin[j]\geq0}^{n-1} dp[i-coin[j]]}$
