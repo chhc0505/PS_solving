@@ -4,5 +4,5 @@
 
 ## DP 총 정리
 1. easy(S-G) : https://github.com/chhc0505/PS_solving/blob/main/DP/DP_easy.md
-2. hard(P-D) :
+2. hard(P-D) : https://github.com/chhc0505/PS_solving/blob/main/DP/DP_hard.md
    
