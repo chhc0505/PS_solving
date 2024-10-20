@@ -71,4 +71,6 @@ Vertex Cover 중 최소의 집합을 Minimum Vertex Cover 라고 한다.
 
 Minimum Vertex Cover는 이분 매칭을 이용해서 구할 수 있다. 즉 Minimum Vertex Cover = maximum matching 이다. 이는 콰닉의 정리를 이용해 증명할 수 있다. (직관적으로도 이해가 간다.)
 
+Minimum Vertex Cover을 구하면 최대독립집합(간선으로 연결되지 않은 정점의 수!!! 정점 u에서 정점 v로 갈 수 없다!)을 구할 수 있다. 
+
 
