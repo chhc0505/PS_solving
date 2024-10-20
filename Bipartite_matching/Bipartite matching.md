@@ -60,3 +60,15 @@ int main () {
 visited 배열을 노드에서 현재 성사된 매칭을 바꿀 수 없을 때 유효하다.
 
 이분그래프에서 간선은 되도록 간방향 간선으로 추가해주자. 만약 양방향으로 추가한다면 집합 A와 집합 B의 idx가 겹치면 안된다.
+
+## Minimum Vertex Cover
+
+Vertex Cover는 다음과 같은 특성을 만족시키는 그래프 정점의 부분집합이다.
+
+- 모든 간선들의 양 끝 정점 중 하나 이상이 Vertex Cover이다.
+
+Vertex Cover 중 최소의 집합을 Minimum Vertex Cover 라고 한다.
+
+Minimum Vertex Cover는 이분 매칭을 이용해서 구할 수 있다. 즉 Minimum Vertex Cover = maximum matching 이다. 이는 콰닉의 정리를 이용해 증명할 수 있다. (직관적으로도 이해가 간다.)
+
+
