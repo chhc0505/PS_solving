@@ -37,54 +37,98 @@ Lazy Segment Tree가 구현 가능하려면 노드에 대한 update에 대해서
 리프노드를 하나하나 방문하지 않고 상위노드에서 미리 구현하고 리프노드의 lazy 배열에 추가해놓는다. 이 때문에 update_range를 ${O(nlogn)}$이 아닌 ${O(logn)}$에 구현이 가능하다. 
 
 ```c++
-void init(int node, int start, int end) {
-    if (start == end) {
-        tree[node] = a[start];
-    } else {
-        init(a, tree, node*2, start, (start+end)/2);
-        init(a, tree, node*2+1, (start+end)/2+1, end);
-        tree[node] = tree[node*2] + tree[node*2+1];
+#include<bits/stdc++.h>
+
+
+using namespace std;
+
+typedef long long ll;
+
+int n,m,k;
+vector<ll> A,tree,lazy;
+
+void init (int node, int start, int end) {
+    if (start==end) {
+        tree[node] = A[start];
+        return;
     }
+
+    init(2*node, start, (start+end)/2);
+    init(2*node+1, (start+end)/2+1, end);
+    tree[node] = tree[2*node]+tree[2*node+1];
 }
-void update_lazy(int node, int start, int end) {
-    if (lazy[node] != 0) {
+
+void updateLazy (int node, int start, int end) {
+    if (lazy[node]!=0) {
         tree[node] += (end-start+1)*lazy[node];
-        if (start != end) {
-            lazy[node*2] += lazy[node];
-            lazy[node*2+1] += lazy[node];
+        if (start!=end) {
+            lazy[2*node] += lazy[node];
+            lazy[2*node+1] += lazy[node];
         }
         lazy[node] = 0;
     }
 }
-void update_range(int node, int start, int end, int left, int right, long long diff) {
-    update_lazy(tree, lazy, node, start, end);
-    if (left > end || right < start) {
+
+void updateRange (int node, int start, int end, int left, int right, ll diff) {
+    updateLazy(node, start, end);
+    if (start>right || end<left) {
         return;
     }
-    if (left <= start && end <= right) {
+
+    if (left<=start && end<=right) {
         tree[node] += (end-start+1)*diff;
-        if (start != end) {
-            lazy[node*2] += diff;
-            lazy[node*2+1] += diff;
+        if (start!=end) {
+            lazy[2*node] += diff;
+            lazy[2*node+1] += diff;
         }
         return;
     }
-    update_range(tree, lazy, node*2, start, (start+end)/2, left, right, diff);
-    update_range(tree, lazy, node*2+1, (start+end)/2+1, end, left, right, diff);
-    tree[node] = tree[node*2] + tree[node*2+1];
+
+    updateRange(2*node, start, (start+end)/2, left, right, diff);
+    updateRange(2*node+1, (start+end)/2+1, end, left, right, diff);
+    tree[node] = tree[2*node]+tree[2*node+1];
 }
 
-long long query(int node, int start, int end, int left, int right) {
-    update_lazy(tree, lazy, node, start, end);
-    if (left > end || right < start) {
+ll query (int node, int start, int end, int left, int right) {
+    updateLazy(node, start, end);
+    if (start>right || end<left) {
         return 0;
     }
-    if (left <= start && end <= right) {
+    if (left<=start && end<=right) {
         return tree[node];
     }
-    long long lsum = query(tree, lazy, node*2, start, (start+end)/2, left, right);
-    long long rsum = query(tree, lazy, node*2+1, (start+end)/2+1, end, left, right);
-    return lsum + rsum;
+
+    ll lsum = query(2*node, start, (start+end)/2, left, right);
+    ll rsum = query(2*node+1, (start+end)/2+1, end, left, right);
+    return lsum+rsum;
+}
+
+
+int main () {
+
+    ios::sync_with_stdio(0); cin.tie(0);
+    cin >> n >> m >> k;
+    tree.resize(4*n+5);
+    lazy.resize(4*n+5);
+
+    for (int i=0; i<n; i++) {
+        ll num; cin >> num;
+        A.push_back(num);
+    }
+    init(1,0,n-1);
+
+    for (int i=0; i<m+k; i++) {
+        int a; cin >> a;
+        if (a==1) {
+            ll b,c,d; cin >> b >> c >> d;
+            updateRange(1,0,n-1,b-1,c-1,d);
+        }else {
+            ll b,c; cin >> b >> c;
+            cout << query(1,0,n-1,b-1,c-1) << '\n';
+        }
+    }
+
+    return 0;
 }
 ```
 
